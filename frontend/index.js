@@ -1,11 +1,16 @@
 function renderXP(current, required) {
-  const bar = document.querySelector('#xp_bar');
+  const bar = document.querySelector("#xp_bar");
+  const value = document.querySelector(".xp_title_value");
+  if (!bar) return;
+
+  bar.replaceChildren();
+
+  value.innerHTML = `${current}/${required}`
+
   const segments = 10;
-
   const progress = Math.min(Math.max(current / required, 0), 1);
-
   const totalFill = progress * segments;
-
+ 
   for (let i = 0; i < segments; i++) {
     const segment = document.createElement("div");
     segment.className = "xp-segment";
@@ -14,7 +19,6 @@ function renderXP(current, required) {
     fill.className = "xp-segment_fill";
 
     const amount = Math.min(Math.max(totalFill - i, 0), 1);
-
     fill.style.width = `${amount * 100}%`;
 
     segment.appendChild(fill);
@@ -22,6 +26,7 @@ function renderXP(current, required) {
 
   }
 
+
 }
 
-renderXP(1, 3)
+renderXP(2, 3)
