@@ -5,17 +5,28 @@ import battery3 from './assets/img/Battery_3.svg'
 import tierStars from './assets/img/tier_stars.svg'
 import alarmIcon from './assets/img/alarm.svg'
 import buffIcon from './assets/img/buff_icon.svg'
+import starBg from './assets/img/star_bg.png'
 import './Card.css'
 import Xp from './Xp.jsx'
 
 
+function Bg({ category }) {
+  if (category === 2) {
+    return <img src={starBg} alt='' />
+  }
+  return null
+}
+
+
 const batteryIcons = [battery0, battery1, battery2, battery3]
 
-function Card({title, tier, battery = 1, m = 0, n = 5}) {
+function Card({ title, tier, battery = 1, m = 0, n = 5,
+  category = 1}) {
   const batteryIcon = batteryIcons[battery] ?? battery1
 
   return (
-    <div className='Card'>
+    <div className='Card' category={category}>
+
       <div className="header">
           <div className="energy">
               <img src={batteryIcon} alt="Battery" />
@@ -33,8 +44,8 @@ function Card({title, tier, battery = 1, m = 0, n = 5}) {
           <div className="image_icon">
 
           </div>
-          <div className="bg">
-
+        <div className="bg">
+          {/* <img src="" alt="" />*/}
           </div>
       </div>
       <Xp current={m} required={n}/>
@@ -70,6 +81,7 @@ function Card({title, tier, battery = 1, m = 0, n = 5}) {
               </div>
           </div>
       </div>
+
     </div>
   )
 }
